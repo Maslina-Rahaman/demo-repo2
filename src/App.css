@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,96 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+body{
+ 
+  background: linear-gradient(to bottom left, #d89bd9 0%, #f3d008 100%);
+  background-position: center;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  
+
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.ui.grid.container{
+  background-color:white;
+  margin-top: 40px !important;
+  border-radius: 20px;
+  height:550px !important;
+
+}
+
+input{
+  background: #f6f6f6 !important ;
+  border:0.5px solid  #ebebeb !important; 
+}
+  
+#sg{
+  background-image: url('52.jpg');
+/* background-image: url('https://cdn.dribbble.com/users/76454/screenshots/13918025/media/687e9570c17f5e80bd4689c3e7e3c77d.png') ; */
+/* background-image: url('https://images.unsplash.com/photo-1563391017873-6e6beab67fed?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbnN0cnVjdGlvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') ; */
+/* background-position: center;  Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  border-radius: 20px 0 0 20px;
+}
+
+.field i { 
+  position: absolute; 
+  margin-left:-1.5rem;
+  margin-top: 0.6rem;
+} 
+
+/* style used in login form */
+#mylink{
+  margin-top: 7px;
+}
+
+/* style used in register form */
+span i{
+  position: relative  !important;
+  margin-top: -1.6rem !important;
+  margin-left:4rem !important;
+}
+/* 
+style used in dashboard page */
+.mg-tp{
+  margin-top: 20px !important
+}
+
+/******************************************* DASHBOARD ******************************************/
+
+.ui.vertical.menu {
+  height: 100%;
+}
+
+.bottom {
+  position: absolute !important;
+  bottom: 10px !important;
+  width: 90%;
+}
+
+
+
+.emp-name {
+  color: #008080;
+}
+
+.ui.scroll {
+  overflow: auto;
+  max-height: 250px;
+}
+
+.ui.scrollUpcoming {
+  overflow: auto;
+  max-height: 350px;
+}
+
+
+.ui.selection.dropdown {
+  border-radius: 0!important;
 }
