@@ -1,11 +1,12 @@
 
 import React,{useState, useEffect} from 'react'
-import {Grid, Form ,Segment,Header } from 'semantic-ui-react';
+import {Grid, Form ,Segment,Header,Loader,Dimmer } from 'semantic-ui-react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import Navbar from "../Dashboard/Navbar"
 import GridReport from "../Grid/GridReport"
 import {getOptionLists} from '../../actions/dropdownlist'
+import {fetchReportData} from '../../actions/reports'
 
 const initialState ={  finYear:1920,
                         projectCode:[],
@@ -27,11 +28,23 @@ const Report=()=> {
   const dispatch = useDispatch();
   const grades= useSelector(state => state.dropdownlist.grades);
   const projectcodes = useSelector(state => state.dropdownlist.projectcodes);
-
-
+  const reports= useSelector(state => state.report);
+  console.log("value of data")
+  console.log(!reports.report?.length)
+  //console.log("inside Report component");
+  //console.log(reports);  
+//  console.log(reports?.report.length); 
  useEffect(()=>{
       dispatch(getOptionLists())
  },[dispatch])
+
+
+ useEffect(()=>{
+   //performing side effects
+  dispatch(fetchReportData(formData))
+
+},[isformSubmitted])
+
   
 const handleChange = (e, data) => {
 
@@ -46,10 +59,8 @@ const handleSubmit =(e)=>{
  e.preventDefault();
  setFormSubmitted(true);
 //pass the form data as props to GridReport component
- console.log(formData)
+//dispatch(fetchReportData(formData))
 // clear();
-
-
 }
 const clear=()=>{
   
@@ -66,19 +77,28 @@ const clear=()=>{
 
     return (
     
-          <Grid stackable columns={2}>
+      isformSubmitted ? !reports.report?.length? (<Dimmer active inverted>
+        <Loader inverted>Loading</Loader>
+      </Dimmer>):
+      <GridReport reports={reports.report} />:  ( <Grid stackable columns={2}>
               <Grid.Row>
                   <Grid.Column width={3}>
                       <Navbar />
                   </Grid.Column>
-            
                 <Grid.Column width={13}>
               
                 <Segment>
                 <Header as='h2' textAlign='center'>Employee Details Statement</Header>
-                  {
+                  {/* {
+                   
                     isformSubmitted ? 
-                    <GridReport data={formData} />:
+                    !reports.report?.length? (
+                      <Dimmer active inverted>
+                      <Loader inverted>Loading</Loader>
+                    </Dimmer>
+              
+                    ):
+                    <GridReport reports={reports.report} />: */}
                     <Form onSubmit={handleSubmit} size='small'>
                             <Form.Group widths='equal'>
                               <Form.Dropdown label="Financial Year" placeholder="Select" name="finYear"  search selection options={finYearOptions} value={formData.finYear} onChange={handleChange}/>
@@ -87,18 +107,18 @@ const clear=()=>{
                               <Form.Dropdown label="Degree" placeholder="Select one or more" name="qualification"   multiple search selection options={options} value={formData.qualification} onChange={handleChange}/>        */}
                               <Form.Dropdown label="Grade" placeholder="Select one or more" name="grade"   multiple search selection options={grades||[]} value={formData.grade} onChange={handleChange}/>       
                             </Form.Group>
-                          
                              <Form.Button type="submit" primary floated='right'>Submit</Form.Button>
                          
-                      </Form>
+                    </Form>
                       
-                  }
-                
+                  {/* }
+                 */}
                      
                       </Segment>
                   </Grid.Column>
                 </Grid.Row>
-          </Grid>
+          </Grid> ) 
+                
     )
 }
 

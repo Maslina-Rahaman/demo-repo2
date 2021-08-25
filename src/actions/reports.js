@@ -25,17 +25,17 @@ export const getOptionLists =()=>async(dispatch)=>{
     // dispatch(action)
 }
 
-
 export const fetchReportData =(formData)=>async(dispatch)=>{
-    console.log("data received : ",formData)
+ 
     try{
-        //const {data}=await api.fetchReport(formData)
-       const res= await api.fetchReport(formData)
-       console.log("response : ",res)
-        dispatch({type: FETCH_REPORT ,payload:formData});
+  
+       const {data}= await api.report(formData);
+     //  console.log("Report received from backend")
+       //console.log(data)
+        dispatch({type: FETCH_REPORT ,payload:data});
     }
     catch(error){
-        console.log(error.message)
+        console.log(error.message);
     }
 }
 

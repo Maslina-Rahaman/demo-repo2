@@ -7,9 +7,7 @@ import * as api from '../api'
 export const getOptionLists =()=>async(dispatch)=>{
 
     try {
-        const {data}= await api.fetchOptionLists();
-        
-       
+        const {data}= await api.fetchOptionLists();  
         // console.log(data)
         // console.log("after modification response object ");
       const grades =  data.grades.map(e => { return { key: e._id, text: e.grade,value: e.grade }})
